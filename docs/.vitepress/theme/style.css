@@ -83,21 +83,30 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 .chapter-contribute strong { font-size: 15px; }
 .chapter-contribute p { font-size: 13px; color: var(--vp-c-text-2); margin: 5px 0 0; }
 .chapter-contribute a { font-size: 13px; color: var(--vp-c-brand-1); flex-shrink: 0; }
-/* Diagram surfaces stay light so the exported Mermaid palette is consistent. */
-.book-diagram { margin: 30px 0; border: 1px solid #d8e1f2; border-radius: 12px; overflow: hidden; background: #fff; }
-.diagram-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 15px; background: #f3f6fc; color: #51627e; font-size: 12px; border-bottom: 1px solid #dce5f4; }
-.diagram-toolbar button { border: 1px solid #bdccea; padding: 4px 10px; border-radius: 5px; background: #fff; color: #3655a3; cursor: pointer; font-size: 12px; }
-.diagram-canvas { padding: 24px 16px; overflow-x: auto; text-align: center; }
+/* Diagrams use the same theme as the document, including native controls. */
+.book-diagram { margin: 30px 0; min-width: 0; border: 1px solid var(--vp-c-divider); border-radius: 12px; overflow: hidden; background: var(--book-panel); }
+.diagram-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 15px; background: var(--book-surface); color: var(--vp-c-text-2); font-size: 12px; border-bottom: 1px solid var(--vp-c-divider); }
+.diagram-toolbar button, .diagram-zoom-controls button, .diagram-error button { border: 1px solid var(--vp-c-divider); min-height: 36px; padding: 5px 12px; border-radius: 5px; background: var(--vp-c-bg); color: var(--vp-c-brand-1); cursor: pointer; font-size: 12px; flex-shrink: 0; }
+.diagram-toolbar button:hover, .diagram-zoom-controls button:hover:not(:disabled), .diagram-error button:hover { border-color: var(--vp-c-brand-1); background: var(--vp-c-brand-soft); }
+.diagram-canvas { padding: 24px 16px; overflow: auto; text-align: center; overscroll-behavior-x: contain; }
+.diagram-canvas:focus-visible, .blueprint-canvas:focus-visible { outline: 2px solid var(--vp-c-brand-1); outline-offset: -3px; }
 .diagram-canvas svg { display: block; margin: auto; min-width: 0; max-width: none; height: auto; }
-.diagram-loading { padding: 45px; color: #51627e; font-size: 13px; }
-.diagram-error { color: #a33b27; padding: 20px; font-size: 13px; }
-.diagram-source { border-top: 1px solid #e2e8f3; font-size: 12px; color: #51627e; padding: 7px 15px; }
-.diagram-source summary { cursor: pointer; }
-.diagram-source pre { background: #f3f6fc; color: #3a4c6e; padding: 14px; line-height: 1.7; overflow: auto; max-height: 350px; white-space: pre; font-size: 12px; }
-.diagram-dialog { width: min(96vw, 1300px); max-height: 92vh; border: 1px solid #c3d0e7; border-radius: 12px; padding: 0; background: white; box-shadow: 0 20px 80px #102e3440; }
+.diagram-loading { padding: 45px; color: var(--vp-c-text-2); font-size: 13px; }
+.diagram-error { color: var(--vp-c-danger-1); padding: 20px; font-size: 13px; }
+.diagram-error pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+.diagram-source { border-top: 1px solid var(--vp-c-divider); font-size: 12px; color: var(--vp-c-text-2); padding: 7px 15px; }
+.diagram-source summary { cursor: pointer; padding: 5px 0; }
+.diagram-source pre { background: var(--book-surface); color: var(--vp-c-text-1); padding: 14px; line-height: 1.7; overflow: auto; max-height: 350px; white-space: pre; font-size: 12px; }
+.diagram-dialog { width: min(96vw, 1300px); max-height: calc(100vh - 32px); max-height: calc(100dvh - 32px); margin: auto; inset: 0; overflow: hidden; border: 1px solid var(--vp-c-divider); border-radius: 12px; padding: 0; background: var(--book-panel); color: var(--vp-c-text-1); box-shadow: 0 20px 80px #102e3440; }
+.diagram-dialog[open] { display: flex; flex-direction: column; }
+.diagram-dialog-header, .diagram-zoom-controls { flex-shrink: 0; }
+.diagram-zoom-controls { display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-bottom: 1px solid var(--vp-c-divider); }
+.diagram-zoom-controls button { min-width: 40px; font-variant-numeric: tabular-nums; }
+.diagram-zoom-controls button:disabled { opacity: .45; cursor: not-allowed; }
 .diagram-dialog::backdrop { background: #111d35bb; backdrop-filter: blur(4px); }
-.diagram-dialog .expanded { max-height: 80vh; overflow: auto; padding: 30px; }
-.diagram-dialog .expanded svg { min-width: 0; max-width: none; width: 100%; height: auto; }
+.diagram-dialog .expanded { min-height: 0; max-height: none; flex: 1; overflow: auto; overscroll-behavior: contain; padding: 16px; }
+.diagram-zoom-image { display: block; margin: auto; max-width: none !important; height: auto; }
+html:has(.diagram-dialog[open]) { overflow: hidden; }
 /* Homepage */
 .book-home { max-width: 1256px; margin: auto; padding: 76px 40px 64px; }
 .book-cover { display: grid; grid-template-columns: 1fr 1fr; gap: 55px; align-items: center; margin-bottom: 64px; }
@@ -119,7 +128,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 .blueprint-title { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 550; color: #c6d5ef; white-space: nowrap; }
 .blueprint-mark { width: 8px; height: 8px; border: 2px solid #93b0ff; transform: rotate(45deg); }
 .blueprint-switch { display: flex; gap: 3px; background: #0e1b32; padding: 3px; border-radius: 6px; }
-.blueprint-switch button { font-size: 11px; color: #afc2e1; cursor: pointer; padding: 4px 10px; border-radius: 4px; line-height: 1.6; transition: background .16s, color .16s; }
+.blueprint-switch button { font-size: 12px; min-height: 36px; min-width: 58px; color: #afc2e1; cursor: pointer; padding: 6px 10px; border-radius: 4px; line-height: 1.6; transition: background .16s, color .16s; }
+.blueprint-switch button:hover { color: #fff; }
 .blueprint-switch button[aria-pressed='true'] { color: #fff; background: #375792; }
 .blueprint-switch button:focus-visible { outline-color: #b1c5ff; }
 .blueprint-canvas { overflow-x: auto; }
@@ -127,7 +137,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 .blueprint-scroll-hint { display: none; }
 .blueprint-edges { stroke: #475d80; }
 .blueprint-edges .active { stroke: #97b6ff; stroke-width: 2; }
-.blueprint-loop.active { stroke-dasharray: 4 5; animation: execution-loop 8s linear infinite; }
+.blueprint-loop.active { stroke-dasharray: 4 5; animation: execution-loop 2s linear 2; }
 @keyframes execution-loop { to { stroke-dashoffset: -72; } }
 .blueprint-node rect { fill: #192b49; stroke: #3b5377; stroke-width: 1; transition: stroke .2s, fill .2s; }
 .blueprint-node circle { fill: #8ea6cc; }
@@ -268,8 +278,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   .cover-subtitle { font-size: 14px; }
   .cover-actions a { padding: 11px 17px; }
   .cover-footnote { font-size: 10px; }
-  .blueprint-title { font-size: 11px; }
-  .blueprint-switch button { font-size: 10px; padding: 4px 7px; }
+  .blueprint-bar { flex-direction: column; align-items: stretch; gap: 10px; }
+  .blueprint-title { font-size: 12px; }
+  .blueprint-switch button { font-size: 12px; padding: 7px; min-height: 44px; flex: 1; }
   .blueprint-caption { padding: 17px; }
   .blueprint-caption strong { font-size: 14px; }
   .blueprint-scroll-hint { display: block; font-size: 10px; color: #adc0de; margin-bottom: 10px; }
@@ -316,6 +327,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   .diagram-canvas { padding: 18px 9px; }
   .chapter-contribute { padding: 20px; display: block; }
   .chapter-contribute a { display: inline-block; margin-top: 13px; }
+  .diagram-toolbar button, .diagram-zoom-controls button, .diagram-error button { min-height: 44px; min-width: 44px; }
+  .diagram-source summary { min-height: 44px; padding: 10px 0; }
+}
+@media (pointer: coarse) {
+  .blueprint-switch button, .diagram-toolbar button, .diagram-zoom-controls button, .diagram-error button { min-height: 44px; min-width: 44px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
