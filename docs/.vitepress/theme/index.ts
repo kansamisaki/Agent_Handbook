@@ -1,5 +1,7 @@
 import Teek from 'vitepress-theme-teek'
 import 'vitepress-theme-teek/index.css'
+import { enhanceAppWithTabs } from 'vitepress-plugin-tabs/client'
+import 'virtual:group-icons.css'
 import './style.css'
 import MermaidDiagram from './MermaidDiagram.vue'
 import BookHome from './BookHome.vue'
@@ -10,6 +12,7 @@ export default {
   Layout: BookLayout,
   async enhanceApp(ctx) {
     await Teek.enhanceApp(ctx)
+    enhanceAppWithTabs(ctx.app)
     ctx.app.component('MermaidDiagram', MermaidDiagram)
     ctx.app.component('BookHome', BookHome)
   },

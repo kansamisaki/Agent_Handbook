@@ -9,7 +9,7 @@ outline: false
 
 [返回源码目录](/project/source-index) · [下载整个工程](/downloads/ops-copilot.zip)
 
-```python
+```python [evaluate.py]
 #!/usr/bin/env python3
 """Run pre-approval task checks against an explicitly started local service.
 

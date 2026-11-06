@@ -9,7 +9,7 @@ outline: false
 
 [返回源码目录](/project/source-index) · [下载整个工程](/downloads/ops-copilot.zip)
 
-```python
+```python [test_integration.py]
 """Real HTTP, Java/H2 and Python/SQLite. Every spawned process is reaped in finally."""
 from concurrent.futures import ThreadPoolExecutor
 from contextlib import contextmanager

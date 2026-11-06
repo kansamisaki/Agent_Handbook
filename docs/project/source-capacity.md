@@ -9,7 +9,7 @@ outline: false
 
 [返回源码目录](/project/source-index) · [下载整个工程](/downloads/ops-copilot.zip)
 
-```python
+```python [capacity.py]
 #!/usr/bin/env python3
 """Transparent capacity model; estimates only, never substitutes for a benchmark."""
 import argparse

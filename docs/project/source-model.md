@@ -9,7 +9,7 @@ outline: false
 
 [返回源码目录](/project/source-index) · [下载整个工程](/downloads/ops-copilot.zip)
 
-```python
+```python [model.py]
 """Protocol adapter. Deterministic mode is a test baseline, not a pretend LLM."""
 import json
 import httpx

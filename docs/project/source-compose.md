@@ -9,7 +9,7 @@ outline: false
 
 [返回源码目录](/project/source-index) · [下载整个工程](/downloads/ops-copilot.zip)
 
-```yaml
+```yaml [compose.yaml]
 # Optional single-host teaching topology; not executed during authoring.
 # SQLite/H2 local volumes deliberately constrain this profile to one host.
 name: agent-book-copilot

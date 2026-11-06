@@ -9,7 +9,7 @@ outline: false
 
 [返回源码目录](/project/source-index) · [下载整个工程](/downloads/ops-copilot.zip)
 
-```java
+```java [Identity.java]
 package book.copilot;
 
 import org.springframework.beans.factory.annotation.Value;

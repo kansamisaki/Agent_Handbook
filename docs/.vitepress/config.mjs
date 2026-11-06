@@ -1,5 +1,8 @@
 import { defineConfig } from 'vitepress'
 import { defineTeekConfig } from 'vitepress-theme-teek/config'
+import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs'
+import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons'
+import footnote from 'markdown-it-footnote'
 import book from './book.json' with { type: 'json' }
 
 // configure-pages supplies either '/repository' or '' for a root/custom domain.
@@ -12,7 +15,13 @@ const teek = defineTeekConfig({
   pageStyle: 'default',
   anchorScroll: false,
   windowTransition: false,
-  themeEnhance: { enabled: false },
+  themeEnhance: {
+    enabled: true,
+    position: 'top',
+    layoutSwitch: { defaultMode: 'original', disableAnimation: true },
+    themeColor: { disabled: true },
+    spotlight: { defaultValue: false, defaultStyle: 'aside' },
+  },
   codeBlock: { enabled: true, collapseHeight: false, langTextTransform: 'none' },
   articleAnalyze: { showInfo: false },
   breadcrumb: { enabled: false },
@@ -34,6 +43,7 @@ export default defineConfig({
   ignoreDeadLinks: false,
   appearance: true,
   lastUpdated: false,
+  vite: { plugins: [groupIconVitePlugin({ customIcon: { '.sql': 'vscode-icons:file-type-sql' } })] },
   head: [['link',{rel:'icon',href:`${base}favicon.svg`}]],
   themeConfig: {
     logo: '/favicon.svg',
@@ -72,6 +82,12 @@ export default defineConfig({
     math:true,
     lineNumbers:false,
     config(md){
+      md.use(tabsMarkdownPlugin)
+      md.use(groupIconMdPlugin)
+      md.use(footnote)
+      md.renderer.rules.footnote_block_open = () => '<section class="footnotes" aria-label="补充说明"><p class="footnotes-title">补充说明</p><ol class="footnotes-list">\n'
+      const footnoteAnchor = md.renderer.rules.footnote_anchor
+      md.renderer.rules.footnote_anchor = (...args) => footnoteAnchor(...args).replace('<a ', '<a aria-label="返回正文引用处" ')
       const fence=md.renderer.rules.fence.bind(md.renderer.rules)
       md.renderer.rules.fence=(tokens,idx,options,env,self)=>{
         if(tokens[idx].info.trim()==='mermaid')return `<MermaidDiagram code="${encodeURIComponent(tokens[idx].content)}" />`

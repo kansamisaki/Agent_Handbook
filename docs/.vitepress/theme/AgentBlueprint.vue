@@ -25,7 +25,7 @@ const nodes = [
         <button v-for="view in views" :key="view.id" :aria-pressed="active === view.id" @click="active = view.id">{{ view.name }}</button>
       </div>
     </div>
-    <div class="blueprint-canvas" tabindex="0" role="region" aria-label="架构关系图，可使用方向键横向滚动">
+    <div class="blueprint-canvas">
       <svg viewBox="0 0 560 365" role="img" aria-labelledby="blueprint-title blueprint-description">
         <title id="blueprint-title">Agent 系统的职责关系</title>
         <desc id="blueprint-description">Agent 运行时组织上下文与工具，按权限访问记忆，通过业务 API 执行动作，并将状态和事件保存到 Checkpoint。高亮表示当前选中的观察视角。</desc>
@@ -64,7 +64,7 @@ const nodes = [
       </svg>
     </div>
     <figcaption class="blueprint-caption" aria-live="polite" aria-atomic="true">
-      <span class="blueprint-scroll-hint">横向滑动图表，查看完整架构</span>
+      <span class="blueprint-scroll-hint">切换上方视角，了解各层职责</span>
       <strong>{{ selected.title }}</strong>
       <p>{{ selected.description }}</p>
       <a :href="withBase(selected.link)">{{ selected.linkText }} <span aria-hidden="true">↗</span></a>

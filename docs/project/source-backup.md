@@ -9,7 +9,7 @@ outline: false
 
 [返回源码目录](/project/source-index) · [下载整个工程](/downloads/ops-copilot.zip)
 
-```python
+```python [backup.py]
 #!/usr/bin/env python3
 """Consistent SQLite snapshot through the backup API, including committed WAL pages."""
 import argparse

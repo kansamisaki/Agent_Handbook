@@ -9,7 +9,7 @@ outline: false
 
 [返回源码目录](/project/source-index) · [下载整个工程](/downloads/ops-copilot.zip)
 
-```sql
+```sql [postgres-queue.sql]
 -- Design reference for a separate PostgreSQL adapter, NOT used by the SQLite executable.
 -- Create with a migration role; runtime roles should have only required table privileges.
 CREATE TABLE agent_run (

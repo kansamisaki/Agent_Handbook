@@ -9,7 +9,7 @@ outline: false
 
 [返回源码目录](/project/source-index) · [下载整个工程](/downloads/ops-copilot.zip)
 
-```python
+```python [memory.py]
 """Explicit preferences with CAS versions, expiry, tombstones and an outbox index."""
 import time
 import uuid

@@ -9,7 +9,7 @@ outline: false
 
 [返回源码目录](/project/source-index) · [下载整个工程](/downloads/ops-copilot.zip)
 
-```python
+```python [test_core.py]
 import time
 from concurrent.futures import ThreadPoolExecutor
 import httpx

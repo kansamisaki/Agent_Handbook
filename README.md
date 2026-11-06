@@ -81,7 +81,18 @@ flowchart LR
 
 ### 阅读文档
 
-直接打开 **[在线手册](https://kansamisaki.github.io/Agent_Handbook/)**，支持全文搜索、明暗主题、移动端目录、公式排版与图表放大。文档站是静态网站，Python / Java 项目需要单独下载运行。
+直接打开 **[在线手册](https://kansamisaki.github.io/Agent_Handbook/)**，支持全文搜索、明暗主题、移动端目录、公式排版与图表缩放。正文图表默认适应宽度，点击「放大查看」后可切换 100% 或继续放大；手机旋转和桌面布局调整时，适宽模式会重新计算。
+
+文档站是静态网站，Python / Java 项目需要单独下载运行。
+
+| 阅读增强 | 使用位置与效果 |
+| :--- | :--- |
+| [vitepress-plugin-tabs](https://vitepress-plugins.sapphi.red/tabs/) | 入门指南按背景切换阅读入口，支持方向键选择和本地偏好记忆 |
+| [vitepress-plugin-group-icons](https://vp.yuy1n.io/) | 22 份源码显示文件标题与图标，项目快速开始提供 Python / Java 代码组 |
+| [markdown-it-footnote](https://github.com/markdown-it/markdown-it-footnote) | 补充说明放在文末，点击编号定位，并可返回正文引用处 |
+| Teek 阅读设置 | 桌面导航中的设置面板支持正文布局调整和可选的阅读聚光灯 |
+
+插件版本随 `package-lock.json` 锁定。图标在构建时生成并随站点发布，阅读正文无需访问在线图标服务。
 
 ### 本地开发
 

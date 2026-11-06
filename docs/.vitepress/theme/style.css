@@ -59,7 +59,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 .book-breadcrumb { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; color: var(--vp-c-text-2); font-size: 12px; margin: 0 0 24px; }
 .book-breadcrumb a:hover { color: var(--vp-c-brand-1); }
 .chapter-pill { margin-left: auto; border: 1px solid var(--vp-c-divider); border-radius: 5px; padding: 2px 9px; color: var(--vp-c-brand-1); background: var(--book-surface); }
-.VPDoc.has-aside .content-container { max-width: 770px !important; }
+html:is(:not([layout-mode]), [layout-mode='original']) .VPDoc.has-aside .content-container { max-width: 770px !important; }
 .vp-doc { font-size: 16px; line-height: 1.95; }
 .vp-doc p, .vp-doc li { line-height: 1.95; }
 .vp-doc p { margin: 20px 0; }
@@ -90,7 +90,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 .diagram-toolbar button:hover, .diagram-zoom-controls button:hover:not(:disabled), .diagram-error button:hover { border-color: var(--vp-c-brand-1); background: var(--vp-c-brand-soft); }
 .diagram-canvas { padding: 24px 16px; overflow: auto; text-align: center; overscroll-behavior-x: contain; }
 .diagram-canvas:focus-visible, .blueprint-canvas:focus-visible { outline: 2px solid var(--vp-c-brand-1); outline-offset: -3px; }
-.diagram-canvas svg { display: block; margin: auto; min-width: 0; max-width: none; height: auto; }
+.diagram-canvas svg { display: block; margin: auto; min-width: 0; max-width: 100%; height: auto; }
 .diagram-loading { padding: 45px; color: var(--vp-c-text-2); font-size: 13px; }
 .diagram-error { color: var(--vp-c-danger-1); padding: 20px; font-size: 13px; }
 .diagram-error pre { white-space: pre-wrap; overflow-wrap: anywhere; }
@@ -133,7 +133,7 @@ html:has(.diagram-dialog[open]) { overflow: hidden; }
 .blueprint-switch button[aria-pressed='true'] { color: #fff; background: #375792; }
 .blueprint-switch button:focus-visible { outline-color: #b1c5ff; }
 .blueprint-canvas { overflow-x: auto; }
-.blueprint-canvas svg { width: 100%; min-width: 440px; height: auto; display: block; }
+.blueprint-canvas svg { width: 100%; min-width: 0; height: auto; display: block; }
 .blueprint-scroll-hint { display: none; }
 .blueprint-edges { stroke: #475d80; }
 .blueprint-edges .active { stroke: #97b6ff; stroke-width: 2; }
@@ -229,8 +229,8 @@ html:has(.diagram-dialog[open]) { overflow: hidden; }
 .dark .book-diagram { border-color: #405171; }
 .dark .vp-doc a { color: var(--vp-c-brand-1); }
 @media (min-width: 1440px) {
-  .VPDoc.has-aside .content-container { max-width: 790px !important; }
-  .VPDoc.has-aside .container { max-width: 1240px !important; }
+  html:is(:not([layout-mode]), [layout-mode='original']) .VPDoc.has-aside .content-container { max-width: 790px !important; }
+  html:is(:not([layout-mode]), [layout-mode='original']) .VPDoc.has-aside .container { max-width: 1240px !important; }
 }
 @media (max-width: 1100px) {
   .book-home { padding-top: 48px; }
@@ -343,4 +343,37 @@ html:has(.diagram-dialog[open]) { overflow: hidden; }
   .diagram-canvas svg { max-height: 600px; }
   .vp-doc h2 { break-after: avoid; }
   .vp-doc p { orphans: 3; widows: 3; }
+}
+
+/* Reading plugins share the handbook's light/dark palette. */
+.diagram-zoom-controls button[aria-pressed='true'] { color: var(--vp-c-brand-1); background: var(--vp-c-brand-soft); border-color: var(--vp-c-brand-1); }
+.vp-doc .plugin-tabs { border: 1px solid var(--vp-c-divider); border-radius: 12px; background: var(--book-panel); overflow: hidden; margin: 28px 0; }
+.vp-doc .plugin-tabs--tab-list { display: flex; gap: 4px; padding: 7px 10px 0; background: var(--book-surface); }
+.vp-doc .plugin-tabs--tab { min-height: 44px; flex-shrink: 0; line-height: 1.5; padding: 12px 14px; border-radius: 7px 7px 0 0; }
+.vp-doc .plugin-tabs--tab[aria-selected='true'] { color: var(--vp-c-brand-1); background: var(--book-panel); }
+.vp-doc .plugin-tabs--tab:focus-visible { outline-offset: -3px; }
+.vp-doc .plugin-tabs--content { padding: 22px 24px; }
+.vp-doc .plugin-tabs--content:focus-visible { outline: 2px solid var(--vp-c-brand-1); outline-offset: -3px; }
+.vp-doc .vp-code-group { margin: 28px 0; }
+.vp-doc .vp-code-group .tabs { padding: 0 12px; border: 1px solid var(--vp-c-divider); background: var(--book-surface); border-radius: 10px 10px 0 0; }
+.vp-doc .vp-code-group .tabs label { min-height: 48px; }
+.vp-doc .vp-code-group div[class*='language-'] { margin: 0; border-top: 0; border-radius: 0 0 10px 10px; }
+.vp-doc .vp-code-group div[class*='language-'] pre { border-radius: 0 0 10px 10px; }
+.vp-doc .vp-code-block-title { margin: 26px 0; }
+.vp-doc .vp-code-block-title-bar { margin: 0; border: 1px solid var(--vp-c-divider); border-radius: 10px 10px 0 0; background: var(--book-surface); color: var(--vp-c-text-1); }
+.vp-doc .vp-code-block-title div[class*='language-'] { margin: 0 !important; border-top: 0; }
+.vp-doc .footnotes { margin-top: 42px; padding: 18px 22px; background: var(--book-surface); border-left: 3px solid var(--vp-c-brand-1); border-radius: 0 8px 8px 0; font-size: 13px; color: var(--vp-c-text-2); }
+.vp-doc .footnotes-title { font-size: 13px; font-weight: 650; color: var(--vp-c-text-1); margin: 0 0 10px; }
+.vp-doc .footnotes-list { margin: 0; padding-left: 22px; }
+.vp-doc .footnote-item p { font-size: 13px; margin: 6px 0; }
+.vp-doc .footnote-ref a { padding: 0 3px; font-weight: 600; text-decoration: none; }
+.vp-doc .footnote-backref { display: inline-flex; align-items: center; justify-content: center; min-width: 32px; min-height: 32px; text-decoration: none; }
+.vp-doc .footnote-item:target { color: var(--vp-c-text-1); background: var(--vp-c-brand-soft); border-radius: 4px; }
+@media (max-width: 600px) {
+  .vp-doc .plugin-tabs--content { padding: 18px; }
+  .vp-doc .plugin-tabs--tab { padding: 12px; font-size: 13px; }
+  .vp-doc .vp-code-group .tabs { margin: 0; }
+  .vp-doc .vp-code-group .blocks { margin: 0; }
+  .vp-doc .footnotes { padding: 16px; }
+  .vp-doc .footnote-backref { min-width: 44px; min-height: 44px; }
 }

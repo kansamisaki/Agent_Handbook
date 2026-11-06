@@ -9,7 +9,7 @@ outline: false
 
 [返回源码目录](/project/source-index) · [下载整个工程](/downloads/ops-copilot.zip)
 
-```python
+```python [dev.py]
 #!/usr/bin/env python3
 """Explicit local-only development launcher; no browser, Docker or global services."""
 from pathlib import Path

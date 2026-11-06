@@ -9,7 +9,7 @@ outline: false
 
 [返回源码目录](/project/source-index) · [下载整个工程](/downloads/ops-copilot.zip)
 
-```sql
+```sql [schema.sql]
 CREATE TABLE IF NOT EXISTS services (
  tenant VARCHAR(80) NOT NULL,
  service_id VARCHAR(80) NOT NULL,

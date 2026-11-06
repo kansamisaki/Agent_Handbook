@@ -8,7 +8,7 @@ title: 本机运行：Python 与 Java 完整闭环
 
 ## 1. 安装和启动
 
-使用 Python 3.11+ 与 JDK 17+。交付验证环境为 Python 3.13 和 JDK 17。重新构建 Java 需要 Maven 3.6.3+；包中包含已构建 JAR，可用于首次阅读和演示。
+使用 Python 3.11+ 与 JDK 17+。交付验证环境为 Python 3.13 和 JDK 17。[^environment]重新构建 Java 需要 Maven 3.6.3+；包中包含已构建 JAR，可用于首次阅读和演示。
 
 ```sh
 python3 -m venv .venv
@@ -20,6 +20,46 @@ python scripts/dev.py
 Python 依赖安装在项目虚拟环境里。Java 依赖由 Maven 锁在项目 POM 的 Spring Boot 版本体系中；不要因为本机还安装了旧 Java 就随意修改父版本。若 `java -version` 低于 17，先选择正确 JDK，再构建。
 
 启动器依次检查 Java `/health`、Python `/health`，确认就绪后启动 Worker。它不自动打开浏览器。你可以自行访问 `http://127.0.0.1:18000/docs` 阅读完整 API 合同。
+
+### 检查服务是否就绪
+
+启动器保持运行时，下面两种客户端任选一种，都会读取两个服务的 `/health`。保存为标签上的文件名，分别使用 `python check_health.py` 或 `java HealthCheck.java` 运行；Java 示例要求 JDK 17+。
+
+::: code-group
+
+```python [check_health.py]
+from urllib.request import urlopen
+
+for port in (18000, 18081):
+    with urlopen(f"http://127.0.0.1:{port}/health", timeout=5) as response:
+        print(port, response.status, response.read().decode("utf-8"))
+```
+
+```java [HealthCheck.java]
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.Duration;
+
+public class HealthCheck {
+    public static void main(String[] args) throws Exception {
+        var client = HttpClient.newBuilder()
+            .connectTimeout(Duration.ofSeconds(5)).build();
+        for (int port : new int[] {18000, 18081}) {
+            var request = HttpRequest.newBuilder()
+                .uri(URI.create("http://127.0.0.1:" + port + "/health"))
+                .timeout(Duration.ofSeconds(5)).GET().build();
+            var response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            System.out.println(port + " " + response.statusCode() + " " + response.body());
+        }
+    }
+}
+```
+
+:::
+
+两个服务都应返回 200。此检查只能证明 HTTP 入口可达；完整业务闭环还需要执行后面的草案、审批和故障测试。如果连接失败，先检查启动器日志和端口，再读 [排障手册](/project/troubleshooting)。
 
 ## 2. 第一次只生成草案
 
@@ -100,3 +140,5 @@ python scripts/check.py
 适配器使用 HTTP 调用而不是只留一个 TODO；响应由 Pydantic 严格解析。工具名只能来自枚举，额外 tenant 字段会被拒绝。不同服务对 JSON/工具调用格式的支持可能不同，本实现使用受控 JSON 决策协议，因此应先在自己的模型上测 schema 合法率、任务成功率和耗时。对应服务的原始接口行为参考 [vLLM 官方文档](https://docs.vllm.ai/en/latest/serving/online_serving/openai_compatible_server/)。
 
 这条路径不会自动产生效果保证。接入模型后仍应保留确定性测试、用同一批任务比较模型、记录失败样本，再决定是否允许真实模型负责下一步选择。
+
+[^environment]: 版本与测试结果对应交付时的环境，完整记录见 [实际验证报告](/project/verification)。本机安装版本与报告不同时，请重新执行测试，并记录实际环境。

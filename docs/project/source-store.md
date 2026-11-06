@@ -9,7 +9,7 @@ outline: false
 
 [返回源码目录](/project/source-index) · [下载整个工程](/downloads/ops-copilot.zip)
 
-```python
+```python [store.py]
 """Short SQLite transactions, fenced worker leases, append-only progress events.
 
 Local reference: a single host / local disk. Do not put this SQLite file on NFS.

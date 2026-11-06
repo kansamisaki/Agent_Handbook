@@ -29,7 +29,7 @@ export function renderDiagram(source, dark, isCurrent = () => true) {
     const width = validBounds ? Math.max(300, bounds[2]) : 300
     const height = validBounds ? width * bounds[3] / bounds[2] : 200
     root.style.width = `${width}px`
-    root.style.maxWidth = 'none'
+    root.style.maxWidth = '100%'
     root.style.backgroundColor = palette.background
     return { svg: new XMLSerializer().serializeToString(root), width, height }
   })
