@@ -24,17 +24,19 @@ node verify-static.mjs
 
 上面得到根路径 `/` 版本，适用于本地阅读、用户主页仓库或独立域名。
 
-若手动部署到 `https://用户名.github.io/agent-engineering-blog/`，则构建时指定对应的仓库名：
+若手动部署到 `https://kansamisaki.github.io/Agent_Handbook/`，则构建时指定对应的仓库名：
 
 ```sh
-VITEPRESS_BASE=/agent-engineering-blog/ npm run build
-VITEPRESS_BASE=/agent-engineering-blog/ node verify-static.mjs
+VITEPRESS_BASE=/Agent_Handbook/ npm run build
+VITEPRESS_BASE=/Agent_Handbook/ node verify-static.mjs
 ```
 
 构建目标路径与部署路径必须一致。子路径产物不适合直接用现有 `serve.py` 在根路径预览；本地阅读重新执行普通 `npm run build` 即可。Actions 自动处理这个区别。
 
-## 当前交付状态
+## 查看部署状态
 
-已经提供 workflow 与 base 适配；本地分别检查根路径和仓库子路径的构建。没有创建 GitHub 仓库、推送源码或实际发布，GitHub 托管工作流尚未执行。
+仓库已配置 GitHub Pages。推送到 `main` 后，可在 [Actions](https://github.com/kansamisaki/Agent_Handbook/actions/workflows/deploy.yml) 查看校验、构建与部署记录；全部成功后，访问 [在线手册](https://kansamisaki.github.io/Agent_Handbook/)。README 的 Docs build 徽章显示该工作流状态。
+
+如果 `Read Pages URL` 报 `Get Pages site failed / Not Found`，先检查 **Settings → Pages → Source** 是否选择了 **GitHub Actions**，然后重新运行工作流。这个错误发生在 VitePress 构建之前。
 
 参考：[VitePress 官方部署指南](https://vitepress.dev/guide/deploy#github-pages)、[GitHub configure-pages 的路径输出](https://github.com/actions/configure-pages)。

@@ -8,7 +8,7 @@ onBeforeUnmount(()=>alive=false)
 onMounted(async()=>{
   try{
     const {default:mermaid}=await import('mermaid')
-    mermaid.initialize({startOnLoad:false,securityLevel:'strict',theme:'base',fontFamily:'PingFang SC, Microsoft YaHei, sans-serif',themeVariables:{primaryColor:'#edf5f2',primaryTextColor:'#203d36',primaryBorderColor:'#6d9d8e',lineColor:'#5d7d8f',secondaryColor:'#eaf1f7',tertiaryColor:'#f6f4ed',fontSize:'14px'},flowchart:{htmlLabels:false,curve:'basis',useMaxWidth:true},sequence:{useMaxWidth:true,wrap:true}})
+    mermaid.initialize({startOnLoad:false,securityLevel:'strict',theme:'base',fontFamily:'PingFang SC, Microsoft YaHei, sans-serif',themeVariables:{primaryColor:'#eef2ff',primaryTextColor:'#233253',primaryBorderColor:'#8299db',lineColor:'#65789d',secondaryColor:'#e5f4f3',tertiaryColor:'#fff5e5',fontSize:'14px'},flowchart:{htmlLabels:false,curve:'basis',useMaxWidth:true},sequence:{useMaxWidth:true,wrap:true}})
     const id='diagram-'+Math.random().toString(36).slice(2)
     const rendered=await mermaid.render(id,source)
     // Preserve natural label size; wide diagrams scroll instead of shrinking to unreadable text.

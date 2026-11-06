@@ -38,6 +38,8 @@ export default defineConfig({
   themeConfig: {
     logo: '/favicon.svg',
     siteTitle: 'Agent 工程手册',
+    socialLinks: [{ icon: 'github', link: 'https://github.com/kansamisaki/Agent_Handbook', ariaLabel: '在 GitHub 查看 Agent Handbook' }],
+    editLink: { pattern: 'https://github.com/kansamisaki/Agent_Handbook/edit/main/docs/:path', text: '在 GitHub 上改进此页' },
     nav: [
       { text: '全书目录', link: '/guide/catalog' },
       { text: '学习路线', link: '/guide/roadmap' },
@@ -64,7 +66,7 @@ export default defineConfig({
     outline: { level:[2,3], label:'本章内容' },
     docFooter:{prev:'上一章',next:'下一章'},
     returnToTopLabel:'回到顶部',sidebarMenuLabel:'目录',darkModeSwitchLabel:'切换明暗主题',
-    footer:{message:'VitePress + Teek · 本地知识博客',copyright:'内容核对于 2026-11-05；案例参数与学习时间为教学假设。'},
+    footer:{message:'Agent Handbook · 从机制到实现，从验证到交付',copyright:'由 VitePress + Teek 构建。案例使用教学数据；工程验证范围见项目报告。'},
   },
   markdown:{
     math:true,

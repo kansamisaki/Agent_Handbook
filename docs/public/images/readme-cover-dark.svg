@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="480" viewBox="0 0 1440 480" role="img" aria-labelledby="title desc">
+<title id="title">Agent Handbook · Agent 工程手册</title><desc id="desc">从模型到可靠系统。Context、Tools、Memory 和 Infrastructure 围绕 Agent Runtime 协作。</desc>
+<defs><pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#31496f"/></pattern><linearGradient id="core" x2="1" y2="1"><stop stop-color="#3659d9"/><stop offset="1" stop-color="#6388f1"/></linearGradient></defs>
+<rect x="1" y="1" width="1438" height="478" rx="22" fill="#111e35" stroke="#31496f"/>
+<path d="M806 24v432" stroke="#31496f"/>
+<rect x="824" y="24" width="590" height="432" rx="12" fill="url(#grid)"/>
+<g font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">
+<rect x="65" y="60" width="38" height="38" rx="10" fill="#3659d9"/>
+<path d="M74 85 84 68 94 85M78 79h12" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="120" y="86" fill="#a9bddb" font-size="20" font-weight="600">Agent 工程手册</text>
+<text x="64" y="184" fill="#e6eeff" font-size="67" font-weight="750" letter-spacing="-2">Agent Engineering</text>
+<text x="65" y="253" fill="#e6eeff" font-size="57" font-weight="700" letter-spacing="-1">From model to system.</text>
+<text x="67" y="309" fill="#a9bddb" font-size="22">理解机制 · 完整实现 · 验证交付</text>
+<path d="M67 347h660" stroke="#31496f"/>
+<text x="67" y="393" fill="#a1bbff" font-size="18" font-weight="600">27 章系统讲解</text>
+<text x="267" y="393" fill="#a9bddb" font-size="18">Python / Java</text>
+<text x="488" y="393" fill="#a9bddb" font-size="18">Ops Copilot 实战</text>
+<g fill="none" stroke="#a1bbff" stroke-width="2"><path d="M1003 132H1040V205H1084"/><path d="M1164 205H1208V132H1243"/><path d="M1003 348H1040V256H1084"/><path d="M1164 256H1208V348H1243"/><path d="M1100 191V165H1150V191" stroke-dasharray="5 5"/></g>
+<g fill="#192d4d" stroke="#31496f"><rect x="850" y="95" width="164" height="74" rx="10"/><rect x="1232" y="95" width="164" height="74" rx="10"/><rect x="850" y="311" width="164" height="74" rx="10"/><rect x="1232" y="311" width="164" height="74" rx="10"/></g>
+<rect x="1030" y="190" width="187" height="92" rx="13" fill="url(#core)"/><rect x="1024" y="184" width="199" height="104" rx="18" fill="none" stroke="#a1bbff" opacity=".3"/>
+<g text-anchor="middle"><text x="932" y="126" fill="#e6eeff" font-size="19" font-weight="600">Context</text><text x="932" y="151" fill="#a9bddb" font-size="13">目标与证据</text><text x="1314" y="126" fill="#e6eeff" font-size="19" font-weight="600">Tools</text><text x="1314" y="151" fill="#a9bddb" font-size="13">受控调用</text><text x="932" y="342" fill="#e6eeff" font-size="19" font-weight="600">Memory</text><text x="932" y="367" fill="#a9bddb" font-size="13">写入与遗忘</text><text x="1314" y="342" fill="#e6eeff" font-size="19" font-weight="600">Infra</text><text x="1314" y="367" fill="#a9bddb" font-size="13">持久化与恢复</text><text x="1124" y="230" fill="white" font-size="21" font-weight="650">Agent Runtime</text><text x="1124" y="258" fill="#ecf1ff" font-size="13">决策 / 行动 / 验证</text></g>
+<text x="1124" y="427" text-anchor="middle" fill="#a9bddb" font-size="12">kansamisaki / Agent_Handbook</text>
+</g></svg>
